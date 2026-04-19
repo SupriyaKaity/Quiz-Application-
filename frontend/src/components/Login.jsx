@@ -6,6 +6,8 @@ import App from "../utils/api";
 import { useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Mail, Lock, Eye, EyeOff, LogIn } from "lucide-react";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:9999";
+
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const Login = ({ onLoginSuccess = null }) => {
@@ -23,7 +25,7 @@ const Login = ({ onLoginSuccess = null }) => {
   //const API_BASE = "https://quiz-application-five-azure.vercel.app/";
   // Add this at the top of Login.jsx after imports
   
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:9999";
+
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();

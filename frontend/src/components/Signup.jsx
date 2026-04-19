@@ -13,6 +13,8 @@ import {
 import { useAuth } from "../context/AuthContext";
 import App from "../utils/api";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:9999";
+
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 const Signup = ({ onSignupSuccess = null }) => {
@@ -43,7 +45,6 @@ const Signup = ({ onSignupSuccess = null }) => {
   // const API_BASE = "http://localhost:9999";
   //const API_BASE = "https://quiz-application-five-azure.vercel.app/";
   // Add this at the top of Signup.jsx after imports
-const API_BASE = import.meta.env.VITE_API_BETA_URL || "http://localhost:9999";
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();

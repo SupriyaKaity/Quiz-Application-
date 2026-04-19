@@ -11,6 +11,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import App from "../utils/api";
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -40,7 +41,9 @@ const Signup = ({ onSignupSuccess = null }) => {
   };
 
   // const API_BASE = "http://localhost:9999";
-  const API_BASE = "https://quiz-application-five-azure.vercel.app/";
+  //const API_BASE = "https://quiz-application-five-azure.vercel.app/";
+  // Add this at the top of Signup.jsx after imports
+const API_BASE = import.meta.env.VITE_API_BETA_URL || "http://localhost:9999";
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
@@ -77,7 +80,6 @@ const Signup = ({ onSignupSuccess = null }) => {
         return;
       }
 
-      
       if (data?.token) {
         // Use authLogin instead of manual localStorage
         authLogin(data.user, data.token);

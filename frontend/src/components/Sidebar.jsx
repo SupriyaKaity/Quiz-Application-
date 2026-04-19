@@ -1300,10 +1300,6 @@
 
 // export default Sidebar;
 
-
-
-
-
 // import React, { useState, useEffect, useRef } from "react";
 // import { sidebarStyles } from "../assets/dummyStyles";
 // import questionsData from "../assets/dummydata";
@@ -2217,9 +2213,6 @@
 
 // export default Sidebar;
 
-
-
-
 import React, { useState, useEffect, useRef } from "react";
 import { sidebarStyles } from "../assets/dummyStyles";
 import questionsData from "../assets/dummydata";
@@ -2477,7 +2470,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
     setTimeLeft(15);
     setTimerActive(true);
 
-    if (window.innerWidth < 768) setIsSidebarOpen(false); // Close sidebar on mobile after selection
+    if (window.innerWidth < 768) setIsSidebarOpen(false);
   };
 
   // Force scroll to top on page refresh
@@ -2535,7 +2528,6 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
         const sidebarContent = document.querySelector(".sidebar-content");
         if (sidebarContent) {
           sidebarContent.scrollTop = parseInt(savedScrollPosition);
-          console.log("Restored scroll to:", savedScrollPosition);
         }
       }, 50);
     }
@@ -2840,7 +2832,10 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
         ></div>
       )}
 
-      <div className={sidebarStyles.mainContainer}>
+      <div
+        className={sidebarStyles.mainContainer}
+        style={{ display: "flex", position: "relative" }}
+      >
         {/* Sidebar */}
         <aside
           ref={asideRef}
@@ -2856,6 +2851,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             width: "280px",
             backgroundColor: "white",
             boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
+            overflow: "hidden", // FIX 3: Hide sidebar overflow
           }}
         >
           <div
@@ -2864,6 +2860,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               padding: "20px",
               borderBottom: "1px solid #e5e7eb",
               position: "relative",
+              flexShrink: 0,
             }}
           >
             <div className={sidebarStyles.headerDecoration1}></div>
@@ -3012,27 +3009,32 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
         <main
           className={`${sidebarStyles.mainContent} main-content-fix`}
           style={{
+            flex: 1,
             marginLeft: window.innerWidth >= 768 ? "280px" : "0",
             transition: "margin-left 0.3s ease",
             minHeight: "100vh",
-            width: window.innerWidth >= 768 ? "calc(100% - 280px)" : "100%",
+            width: "100%",
             overflowY: "auto",
-            height: "100vh",
+            position: "relative",
           }}
         >
-          {/* Mobile Menu Button - FIXED: Always visible on mobile */}
+          {/* FIX 2: Mobile Menu Button - Always visible */}
           <div className="md:hidden fixed top-4 left-4 z-30">
             <button
               onClick={toggleSidebar}
               className="p-2 bg-white rounded-lg shadow-lg hover:bg-gray-50 transition"
               style={{
                 boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <Menu size={24} />
             </button>
           </div>
 
+          {/* FIX 1: Content wrapper with proper positioning */}
           <div
             className={
               isLevelSelectionPage ? "level-selection-content-wrapper" : ""
@@ -3041,6 +3043,10 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               minHeight: "calc(100vh - 100px)",
               paddingBottom: "0px",
               paddingTop: window.innerWidth < 768 ? "60px" : "0",
+              width: "100%",
+              maxWidth: "1200px",
+              margin: "0 auto",
+              position: "relative",
             }}
           >
             {!selectedTech ? (
@@ -3053,7 +3059,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                     Welcome to Tech Quiz Master
                   </h2>
                   <p className={sidebarStyles.welcomeDescription}>
-                    Click the menu button ☰ and select a technology to start your quiz journey!
+                    Click the menu button ☰ and select a technology to start
+                    your quiz journey!
                   </p>
 
                   <div className={sidebarStyles.featuresGrid}>
@@ -3200,8 +3207,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                             score.percentage >= 80
                               ? "bg-green-400"
                               : score.percentage >= 60
-                              ? "bg-yellow-400"
-                              : "bg-red-400"
+                                ? "bg-yellow-400"
+                                : "bg-red-400"
                           }`}
                           style={{ width: `${score.percentage}%` }}
                         />
@@ -3250,8 +3257,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                           timeLeft <= 5
                             ? "#ef4444"
                             : timeLeft <= 10
-                            ? "#f97316"
-                            : "#22c55e"
+                              ? "#f97316"
+                              : "#22c55e"
                         }
                         strokeWidth="5"
                         fill="none"
@@ -3266,8 +3273,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                           timeLeft <= 5
                             ? "text-red-500"
                             : timeLeft <= 10
-                            ? "text-orange-500"
-                            : "text-green-500"
+                              ? "text-orange-500"
+                              : "text-green-500"
                         }`}
                       >
                         {timeLeft}
@@ -3337,10 +3344,10 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                             showFeedback && isSelected && isCorrect
                               ? sidebarStyles.optionCorrect
                               : showFeedback && isSelected && !isCorrect
-                              ? sidebarStyles.optionIncorrect
-                              : showFeedback && isCorrect
-                              ? sidebarStyles.optionCorrect
-                              : sidebarStyles.optionNormal
+                                ? sidebarStyles.optionIncorrect
+                                : showFeedback && isCorrect
+                                  ? sidebarStyles.optionCorrect
+                                  : sidebarStyles.optionNormal
                           }`}
                         >
                           <div className={sidebarStyles.optionContent}>

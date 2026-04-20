@@ -2541,6 +2541,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
 
   const performance = getPerformanceStatus();
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const isMobile = window.innerWidth < 768;
+  const selectedTechnology = technologies.find((t) => t.id === selectedTech);
 
   const handleAnswerSelect = (answerIndex) => {
     if (userAnswers[currentQuestion] !== undefined) return;
@@ -2586,9 +2588,12 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
   }, [showResults, score.total]);
 
   return (
-    <div style={{ display: "flex", height: "100vh", overflow: "hidden" }}>
+    <div
+      className="sidebar-layout"
+      style={{ display: "flex", minHeight: "100dvh", overflow: "hidden" }}
+    >
       {/* Mobile overlay - from 1st code */}
-      {isSidebarOpen && window.innerWidth < 768 && (
+      {isSidebarOpen && isMobile && (
         <div
           onClick={() => setIsSidebarOpen(false)}
           style={{
@@ -2603,10 +2608,11 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
       {/* Sidebar - structural from 2nd code with mobile fixes from 1st code */}
       <aside
         ref={asideRef}
+        className="sidebar-drawer"
         style={{
-          position: window.innerWidth < 768 ? "fixed" : "relative",
-          width: "280px",
-          height: "100vh",
+          position: isMobile ? "fixed" : "relative",
+          width: isMobile ? "min(88vw, 320px)" : "280px",
+          height: "100dvh",
           backgroundColor: "white",
           boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
           transform: isSidebarOpen ? "translateX(0)" : "translateX(-100%)",
@@ -2628,16 +2634,26 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <BookOpen size={28} style={{ color: "#4f46e5" }} />
               <div>
-                <h1 style={{ fontSize: "18px", fontWeight: "bold" }}>
+                <h1
+                  style={{
+                    fontSize: isMobile ? "16px" : "18px",
+                    fontWeight: "bold",
+                  }}
+                >
                   Tech Quiz Master
                 </h1>
-                <p style={{ fontSize: "12px", color: "#6b7280" }}>
+                <p
+                  style={{
+                    fontSize: isMobile ? "11px" : "12px",
+                    color: "#6b7280",
+                  }}
+                >
                   Test your knowledge and improve your skills
                 </p>
               </div>
             </div>
             {/* Close button - mobile only from 1st code */}
-            {window.innerWidth < 768 && (
+            {isMobile && (
               <button onClick={toggleSidebar} style={{ padding: "8px" }}>
                 <X size={20} />
               </button>
@@ -2766,60 +2782,117 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
 
       {/* Main Content */}
       <main
+        className="sidebar-main"
         style={{
           flex: 1,
-          height: "100vh",
+          height: "100dvh",
           overflowY: "auto",
           backgroundColor: "#f8fafc",
         }}
       >
         {/* Mobile Menu Button - from 1st code (always visible on mobile) */}
-        {window.innerWidth < 768 && (
-          <button
-            onClick={toggleSidebar}
+        {isMobile && (
+          <div
+            className="mobile-quiz-header"
             style={{
-              position: "fixed",
-              top: "16px",
-              left: "16px",
+              position: "sticky",
+              top: 0,
               zIndex: 30,
-              padding: "8px",
-              backgroundColor: "white",
-              borderRadius: "8px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-              border: "none",
-              cursor: "pointer",
+              padding: "12px 16px",
+              background: "rgba(248,250,252,0.95)",
+              backdropFilter: "blur(10px)",
+              borderBottom: "1px solid rgba(226,232,240,0.9)",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              gap: "12px",
             }}
           >
-            <Menu size={24} />
-          </button>
+            <button
+              onClick={toggleSidebar}
+              style={{
+                padding: "10px",
+                backgroundColor: "white",
+                borderRadius: "12px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+                border: "1px solid #e2e8f0",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}
+            >
+              <Menu size={22} />
+            </button>
+
+            <div
+              style={{
+                flex: 1,
+                minWidth: 0,
+                padding: "10px 14px",
+                background:
+                  "linear-gradient(135deg, rgba(219,234,254,0.95), rgba(224,231,255,0.95))",
+                borderRadius: "14px",
+                border: "1px solid #c7d2fe",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  color: "#1e293b",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {selectedTechnology ? selectedTechnology.name : "Tech Quiz Master"}
+              </div>
+              <div style={{ fontSize: "11px", color: "#64748b", marginTop: "2px" }}>
+                {selectedLevel
+                  ? `${selectedLevel.charAt(0).toUpperCase() + selectedLevel.slice(1)} level`
+                  : selectedTechnology
+                    ? "Choose your difficulty"
+                    : "Open the menu to start"}
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Content Wrapper - structural from 2nd code */}
         <div
+          className="sidebar-content-shell"
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: window.innerWidth < 768 ? "80px 20px 40px" : "40px",
+            padding: isMobile ? "20px 16px 32px" : "40px",
           }}
         >
           {!selectedTech ? (
-            <div style={{ textAlign: "center" }}>
+            <div
+              className="welcome-mobile-card"
+              style={{ textAlign: "center", maxWidth: "860px", margin: "0 auto" }}
+            >
               <div style={{ marginBottom: "24px" }}>
                 <Award size={64} style={{ color: "#4f46e5" }} />
               </div>
               <h2
                 style={{
-                  fontSize: "28px",
+                  fontSize: isMobile ? "24px" : "28px",
                   fontWeight: "bold",
                   marginBottom: "16px",
                 }}
               >
                 Welcome to Tech Quiz Master
               </h2>
-              <p style={{ color: "#6b7280", marginBottom: "32px" }}>
+              <p
+                style={{
+                  color: "#6b7280",
+                  marginBottom: "32px",
+                  fontSize: isMobile ? "15px" : "16px",
+                  lineHeight: 1.7,
+                }}
+              >
                 Select a technology from the sidebar to start your quiz journey.
                 Test your knowledge at basic, intermediate, or advanced levels.
               </p>
@@ -2827,9 +2900,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns:
-                    window.innerWidth < 768 ? "1fr" : "repeat(3, 1fr)",
-                  gap: "20px",
+                  gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+                  gap: isMobile ? "14px" : "20px",
                   marginBottom: "32px",
                 }}
               >
@@ -2910,11 +2982,18 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               </div>
             </div>
           ) : !selectedLevel ? (
-            <div style={{ textAlign: "center", marginTop: "100px" }}>
+            <div
+              style={{
+                textAlign: "center",
+                marginTop: isMobile ? "32px" : "100px",
+                padding: isMobile ? "24px 20px" : 0,
+                backgroundColor: isMobile ? "white" : "transparent",
+                borderRadius: isMobile ? "24px" : 0,
+                boxShadow: isMobile ? "0 16px 40px rgba(15,23,42,0.08)" : "none",
+              }}
+            >
               <div
-                className={
-                  technologies.find((t) => t.id === selectedTech)?.color
-                }
+                className={selectedTechnology?.color}
                 style={{
                   display: "inline-block",
                   padding: "16px",
@@ -2922,16 +3001,16 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                   marginBottom: "16px",
                 }}
               >
-                {technologies.find((t) => t.id === selectedTech)?.icon}
+                {selectedTechnology?.icon}
               </div>
               <h2
                 style={{
-                  fontSize: "24px",
+                  fontSize: isMobile ? "22px" : "24px",
                   fontWeight: "bold",
                   marginBottom: "8px",
                 }}
               >
-                {technologies.find((t) => t.id === selectedTech)?.name} Quiz
+                {selectedTechnology?.name} Quiz
               </h2>
               <p style={{ color: "#6b7280" }}>
                 Select a difficulty level to begin your challenge
@@ -2977,8 +3056,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns:
-                    window.innerWidth < 768 ? "1fr" : "repeat(2, 1fr)",
+                  gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
                   gap: "20px",
                   maxWidth: "400px",
                   margin: "0 auto 32px",
@@ -3063,6 +3141,10 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                   display: "flex",
                   gap: "16px",
                   justifyContent: "center",
+                  flexDirection: isMobile ? "column" : "row",
+                  alignItems: isMobile ? "stretch" : "center",
+                  maxWidth: isMobile ? "320px" : "none",
+                  margin: isMobile ? "0 auto" : undefined,
                 }}
               >
                 <button
@@ -3105,21 +3187,23 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
           ) : currentQ ? (
             <div>
               <div
+                className="quiz-action-bar"
                 style={{
                   position: "fixed",
-                  top: "16px",
-                  right: "16px",
+                  top: isMobile ? "76px" : "16px",
+                  right: isMobile ? "12px" : "16px",
                   zIndex: 50,
                   display: "flex",
-                  gap: "12px",
+                  gap: isMobile ? "8px" : "12px",
                   alignItems: "center",
+                  flexDirection: isMobile ? "column" : "row",
                 }}
               >
                 <div
                   style={{
                     position: "relative",
-                    width: "64px",
-                    height: "64px",
+                    width: isMobile ? "56px" : "64px",
+                    height: isMobile ? "56px" : "64px",
                   }}
                 >
                   <svg
@@ -3175,7 +3259,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                 <button
                   onClick={exitExam}
                   style={{
-                    padding: "10px 20px",
+                    padding: isMobile ? "10px 14px" : "10px 20px",
                     background: "linear-gradient(to right, #fcd34d, #fef08a)",
                     color: "#78350f",
                     borderRadius: "12px",
@@ -3186,11 +3270,11 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                     gap: "8px",
                   }}
                 >
-                  <LogOut size={18} /> Exit Quiz
+                  <LogOut size={18} /> {isMobile ? "Exit" : "Exit Quiz"}
                 </button>
               </div>
 
-              <div style={{ marginBottom: "24px" }}>
+              <div style={{ marginBottom: "24px", paddingTop: isMobile ? "72px" : 0 }}>
                 <div
                   style={{
                     display: "flex",
@@ -3201,8 +3285,13 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                     gap: "16px",
                   }}
                 >
-                  <h1 style={{ fontSize: "20px", fontWeight: "bold" }}>
-                    {technologies.find((t) => t.id === selectedTech)?.name} -{" "}
+                  <h1
+                    style={{
+                      fontSize: isMobile ? "18px" : "20px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {selectedTechnology?.name} -{" "}
                     {selectedLevel.charAt(0).toUpperCase() +
                       selectedLevel.slice(1)}{" "}
                     Level
@@ -3233,15 +3322,26 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                 style={{
                   backgroundColor: "white",
                   borderRadius: "16px",
-                  padding: "24px",
+                  padding: isMobile ? "18px" : "24px",
                   boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
                 }}
               >
                 <div
-                  style={{ display: "flex", gap: "12px", marginBottom: "24px" }}
+                  style={{
+                    display: "flex",
+                    gap: "12px",
+                    marginBottom: "24px",
+                    alignItems: "flex-start",
+                  }}
                 >
                   <Target size={20} style={{ color: "#4f46e5" }} />
-                  <h2 style={{ fontSize: "18px", fontWeight: "500" }}>
+                  <h2
+                    style={{
+                      fontSize: isMobile ? "17px" : "18px",
+                      fontWeight: "500",
+                      lineHeight: 1.5,
+                    }}
+                  >
                     {currentQ.question}
                   </h2>
                 </div>
@@ -3259,8 +3359,8 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                     const showFeedback =
                       userAnswers[currentQuestion] !== undefined;
                     let buttonStyle = {
-                      padding: "12px",
-                      borderRadius: "8px",
+                      padding: isMobile ? "14px 12px" : "12px",
+                      borderRadius: "12px",
                       border: "1px solid #e5e7eb",
                       backgroundColor: "white",
                       cursor: "pointer",
@@ -3308,7 +3408,9 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                         ) : (
                           <div style={{ width: "20px" }} />
                         )}
-                        <span>{option}</span>
+                        <span style={{ lineHeight: 1.5, fontSize: isMobile ? "14px" : "16px" }}>
+                          {option}
+                        </span>
                       </button>
                     );
                   })}

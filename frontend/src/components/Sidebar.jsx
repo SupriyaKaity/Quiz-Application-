@@ -1206,9 +1206,9 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                 )}
 
                 {/* Rest of your quiz content */}
-                <div className={`${sidebarStyles.quizHeader} ${isMobile ? "relative pr-24" : ""}`}>
+                <div className={`${sidebarStyles.quizHeader} ${isMobile ? "relative pr-28 pt-6" : ""}`}>
                   {isMobile && (
-                    <div className="absolute right-4 top-7 z-10">
+                    <div className="absolute right-5 top-8 z-10">
                       <div className="relative h-14 w-14">
                         <svg className="h-full w-full -rotate-90">
                           <circle

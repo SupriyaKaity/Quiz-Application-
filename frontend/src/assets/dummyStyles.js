@@ -336,7 +336,7 @@ export const sidebarStyles = {
 
   // Mobile header
   mobileHeader:
-    "sticky top-0 z-30 mb-2 flex items-center gap-3 border-b border-slate-200/80 bg-slate-50/95 px-1 py-3 backdrop-blur md:hidden",
+    "sticky top-0 z-30 mb-1 flex items-center gap-3 border-b border-slate-200/80 bg-slate-50/95 px-1 py-2 backdrop-blur md:hidden",
   menuButton:
     "flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm",
   mobileTitle:
@@ -357,11 +357,11 @@ export const sidebarStyles = {
   // Welcome screen
 
   welcomeContainer:
-    "flex min-h-0 items-start justify-center overflow-hidden px-3 pb-4 pt-0 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
+    "flex min-h-0 items-start justify-center overflow-hidden px-3 pb-2 pt-0 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
   //welcomeContainer: "flex items-center justify-center p-4 pb-32",
 
   welcomeContent:
-    "mx-auto w-full max-w-2xl rounded-2xl border border-white bg-white/90 p-4 text-center shadow-lg backdrop-blur-sm md:p-6",
+    "mx-auto w-full max-w-2xl rounded-2xl border border-white bg-white/90 p-3 text-center shadow-lg backdrop-blur-sm md:p-6",
 
   welcomeIcon:
     "inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-full shadow mb-4",
@@ -404,11 +404,11 @@ export const sidebarStyles = {
   // Results screen
 
   resultsContainer:
-    "flex h-auto min-h-0 items-start justify-center px-3 pb-4 pt-0 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
+    "flex h-auto min-h-0 items-start justify-center px-3 pb-2 pt-0 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
   //resultsContainer: "flex items-center justify-center p-4 pb-32",
 
   resultsContent:
-    "w-full max-w-2xl rounded-2xl border border-gray-100 bg-white p-4 shadow-lg md:p-6 ",
+    "w-full max-w-2xl rounded-2xl border border-gray-100 bg-white p-3 shadow-lg md:p-6 ",
 
   resultsHeader: "text-center",
   performanceIcon: "p-3 rounded-2xl inline-flex mb-3 shadow-sm",
@@ -437,7 +437,7 @@ export const sidebarStyles = {
   scoreProgressFill: "h-4 rounded-full transition-all duration-500",
 
   // Quiz container
-  quizContainer: "mx-auto my-4 max-w-3xl pb-20 pt-20 md:pt-0",
+  quizContainer: "mx-auto my-2 max-w-3xl pb-20 pt-6 md:my-4 md:pt-0",
   quizHeader:
     "mb-4 bg-white p-4 md:p-6 rounded-2xl shadow-md border border-gray-100",
   quizTitleContainer:

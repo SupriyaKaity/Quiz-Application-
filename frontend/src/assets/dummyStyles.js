@@ -335,26 +335,29 @@ export const sidebarStyles = {
   mainContent: "flex-1 w-full overflow-y-auto ",
 
   // Mobile header
-  mobileHeader: "flex items-center justify-between mb-4 md:hidden",
-  menuButton: "p-2 rounded-md bg-white shadow-sm",
-  mobileTitle: "flex-1 mx-3",
-  mobileTechInfo: "flex items-center font-[pacifico] justify-center space-x-3",
+  mobileHeader:
+    "sticky top-0 z-30 mb-4 flex items-center gap-3 border-b border-slate-200/80 bg-slate-50/95 px-1 py-3 backdrop-blur md:hidden",
+  menuButton:
+    "flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm",
+  mobileTitle:
+    "flex-1 min-w-0 rounded-2xl border border-indigo-100 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-3 shadow-sm",
+  mobileTechInfo: "flex items-center font-[pacifico] justify-start space-x-3",
   mobileTechIcon: "p-2 rounded-md border",
-  mobileTechText: "text-center",
-  mobileTechName: "text-sm font-semibold",
+  mobileTechText: "min-w-0 text-left",
+  mobileTechName: "truncate text-sm font-semibold",
   mobileTechLevel: "text-xs text-slate-600",
   mobilePlaceholder: "text-center text-sm text-slate-600",
 
   // Mobile levels
   mobileLevels: "md:hidden mb-4",
-  mobileLevelsContainer: "flex gap-2 overflow-x-auto",
+  mobileLevelsContainer: "flex gap-2 overflow-x-auto pb-1 no-scrollbar",
   mobileLevelButton:
-    "flex-none px-4 py-2 rounded-xl border border-gray-200 bg-white shadow-sm text-sm font-medium",
+    "flex-none rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium shadow-sm",
 
   // Welcome screen
 
   welcomeContainer:
-    "flex items-center justify-center min-h-[calc(100vh-200px)] p-4",
+    "flex min-h-[calc(100vh-200px)] items-center justify-center p-3 md:p-4",
   //welcomeContainer: "flex items-center justify-center p-4 pb-32",
 
   welcomeContent:
@@ -415,7 +418,7 @@ export const sidebarStyles = {
     "inline-block text-slate-800 px-4 py-1 rounded-full text-sm font-medium mb-6",
 
   // Score grid
-  scoreGrid: "grid grid-cols-2 gap-4 mb-6",
+  scoreGrid: "mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2",
   scoreCard:
     "bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-2xl border border-green-200 text-center",
   scoreIcon:
@@ -433,10 +436,11 @@ export const sidebarStyles = {
   scoreProgressFill: "h-4 rounded-full transition-all duration-500",
 
   // Quiz container
-  quizContainer: "max-w-3xl mx-auto my-4 pb-20",
+  quizContainer: "mx-auto my-4 max-w-3xl pb-20 pt-20 md:pt-0",
   quizHeader:
     "mb-4 bg-white p-4 md:p-6 rounded-2xl shadow-md border border-gray-100",
-  quizTitleContainer: "flex items-center justify-between mb-2",
+  quizTitleContainer:
+    "mb-2 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between",
   quizTitle: "text-xl md:text-2xl font-bold text-slate-800",
   quizCounter:
     "text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium",
@@ -446,8 +450,8 @@ export const sidebarStyles = {
 
   // Question container
   questionContainer:
-    "bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100",
-  questionHeader: "flex items-center mb-2",
+    "rounded-2xl border border-gray-100 bg-white p-4 shadow-lg md:p-8",
+  questionHeader: "mb-2 flex items-start",
   questionIcon: "bg-indigo-100 text-indigo-600 p-2 rounded-lg mr-3",
   questionText: "text-lg md:text-xl font-semibold text-slate-800",
 
@@ -459,12 +463,12 @@ export const sidebarStyles = {
     "border-gray-100 hover:border-indigo-200 hover:bg-indigo-50 hover:shadow-sm",
   optionCorrect: "bg-green-50 border-green-300 text-green-700 shadow-sm",
   optionIncorrect: "bg-red-50 border-red-300 text-red-700 shadow-sm",
-  optionContent: "flex items-center",
+  optionContent: "flex items-start",
   optionIconCorrect: "mr-3 text-green-500 flex-shrink-0",
   optionIconIncorrect: "mr-3 text-red-500 flex-shrink-0",
   optionIconEmpty:
     "w-5 h-5 rounded-full border-2 border-gray-200 mr-3 flex-shrink-0",
-  optionText: "text-sm md:text-lg",
+  optionText: "text-sm leading-6 md:text-lg",
 
   // Loading container
   loadingContainer: "h-full flex items-center justify-center",
@@ -506,7 +510,7 @@ export const sidebarStyles = {
     /* Fix main content overflow */
     main {
       overflow-y: auto;
-      max-height: 100vh;
+      max-height: 100dvh;
     }
     
     /* Ensure footer stays at bottom */
@@ -547,13 +551,24 @@ export const sidebarStyles = {
     
     /* Hide body scrollbar */
     body {
-      overflow: hidden;
+      overflow-x: hidden;
     }
     
     /* Main container scroll */
     .main-container {
       height: 100vh;
       overflow: hidden;
+    }
+
+    @media (max-width: 767px) {
+      .main-content-fix {
+        height: 100dvh !important;
+      }
+
+      .level-selection-wrapper {
+        min-height: auto !important;
+        padding: 24px 12px 32px !important;
+      }
     }
 
 

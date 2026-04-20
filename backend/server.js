@@ -14,7 +14,7 @@ console.log("JWT_SECRET loaded:", process.env.JWT_SECRET ? "Yes" : "No");
 
 app.use(cors({
   origin: [
-    'https://quiz-application-35m4.vercel.app',  // Your frontend URL
+    'https://tech-quiz-application.vercel.app',  // Your frontend URL
     'http://localhost:5173',  // Local development
     'http://localhost:3000'
   ],

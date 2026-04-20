@@ -3006,7 +3006,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
         </aside>
 
         {/* Main Content */}
-        <main
+        {/* <main
           className={`${sidebarStyles.mainContent} main-content-fix`}
           style={{
             flex: 1,
@@ -3016,6 +3016,21 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             width: "100%",
             overflowY: "auto",
             position: "relative",
+          }}
+        > */}
+
+        <main
+          className={`${sidebarStyles.mainContent} main-content-fix`}
+          style={{
+            flex: 1,
+            marginLeft: window.innerWidth >= 768 ? "280px" : "0",
+            transition: "margin-left 0.3s ease",
+            minHeight: "100vh",
+            width: "auto",
+            overflowY: "auto",
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
           {/* FIX 2: Mobile Menu Button - Always visible */}

@@ -357,7 +357,7 @@ export const sidebarStyles = {
   // Welcome screen
 
   welcomeContainer:
-    "flex min-h-[calc(100vh-200px)] items-start justify-center p-3 pb-24 pt-4 md:items-center md:p-4",
+    "flex min-h-[calc(100dvh-140px)] items-start justify-center overflow-hidden p-3 pb-6 pt-3 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
   //welcomeContainer: "flex items-center justify-center p-4 pb-32",
 
   welcomeContent:
@@ -367,11 +367,12 @@ export const sidebarStyles = {
     "inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-full shadow mb-4",
   welcomeTitle:
     "text-xl md:text-3xl font-bold text-slate-800 mb-2 font-[pacifico]",
-  welcomeDescription: "text-sm md:text-lg text-slate-700 mb-6 max-w-md mx-auto",
+  welcomeDescription:
+    "mx-auto mb-4 max-w-md text-sm text-slate-700 md:mb-6 md:text-lg",
 
   // Features grid
   featuresGrid:
-    "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6",
+    "mb-4 grid grid-cols-1 gap-3 md:mb-6 md:grid-cols-2 md:gap-6 lg:grid-cols-3",
   featureCard:
     "bg-gradient-to-br from-blue-50 to-indigo-50 p-4 md:p-5 rounded-2xl border border-blue-100 text-center",
   featureIcon:

@@ -12,16 +12,18 @@ const PORT = process.env.PORT || 9999;
 
 console.log("JWT_SECRET loaded:", process.env.JWT_SECRET ? "Yes" : "No");
 
-app.use(cors({
-  origin: [
-    'https://tech-quiz-application.vercel.app',  // Your frontend URL
-    'http://localhost:5173',  // Local development
-    'http://localhost:3000'
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(
+  cors({
+    origin: [
+      "https://tech-quiz-application.vercel.app", // Your frontend URL
+      "http://localhost:5173", // Local development
+      "http://localhost:3000",
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 // MIDDLEWARE
 //app.use(cors());
@@ -42,8 +44,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server Started on port ${PORT}`);
 });
-
-
 
 // import express from "express";
 // import cors from "cors";
@@ -71,7 +71,7 @@ app.listen(PORT, () => {
 //   origin: function(origin, callback) {
 //     // Allow requests with no origin (like mobile apps or curl)
 //     if (!origin) return callback(null, true);
-    
+
 //     if (allowedOrigins.indexOf(origin) !== -1) {
 //       callback(null, true);
 //     } else {

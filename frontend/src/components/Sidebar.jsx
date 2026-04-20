@@ -1084,14 +1084,14 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                         </p>
                       </div>
 
-                      <div className={sidebarStyles.scoreCard}>
-                        <div className={sidebarStyles.scoreIcon}>
+                      <div className="rounded-2xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-3 text-center md:p-4">
+                        <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 shadow-inner">
                           <XCircle size={24} />
                         </div>
-                        <p className={sidebarStyles.scoreNumber}>
+                        <p className="text-2xl font-bold text-red-600">
                           {score.total - score.correct}
                         </p>
-                        <p className={sidebarStyles.scoreLabel}>
+                        <p className="font-medium text-red-700">
                           Incorrect Answers
                         </p>
                       </div>
@@ -1211,7 +1211,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
                 {/* Rest of your quiz content */}
                 <div className={`${sidebarStyles.quizHeader} ${isMobile ? "relative pt-6" : ""}`}>
                   {isMobile && (
-                    <div className="absolute right-8 top-10 z-10">
+                    <div className="absolute right-4 top-4 z-10">
                       <div className="relative h-14 w-14">
                         <svg
                           viewBox="0 0 64 64"

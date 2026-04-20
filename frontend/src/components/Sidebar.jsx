@@ -3011,12 +3011,11 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
           style={{
             flex: 1,
             marginLeft: window.innerWidth >= 768 ? "280px" : "0",
-            minHeight: "100vh",
+            height: "100vh",
             width: window.innerWidth >= 768 ? "calc(100% - 280px)" : "100%",
             backgroundColor: "#f8fafc",
+            overflowY: "auto",
             position: "relative",
-            display: "flex",
-            flexDirection: "column",
           }}
         >
           {/* Mobile Menu Button */}
@@ -3032,16 +3031,16 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             </button>
           </div>
 
-          {/* Content Wrapper - THIS IS THE KEY FIX */}
+          {/* Content Wrapper - FIXED CENTERING */}
           <div
             style={{
-              flex: 1,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              minHeight: "calc(100vh - 80px)",
               width: "100%",
-              padding: window.innerWidth < 768 ? "60px 20px 40px" : "40px",
+              padding: window.innerWidth < 768 ? "80px 20px 40px" : "40px",
             }}
           >
             <div

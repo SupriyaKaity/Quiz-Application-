@@ -2834,7 +2834,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
 
       <div
         className={sidebarStyles.mainContainer}
-        style={{ display: 'flex', position: 'relative', minHeight: '100vh' }}
+        style={{ display: "flex", position: "relative", minHeight: "100vh" }}
       >
         {/* Sidebar */}
         <aside
@@ -3014,10 +3014,12 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             marginLeft: window.innerWidth >= 768 ? "280px" : "0",
             transition: "margin-left 0.3s ease",
             minHeight: "100vh",
-            width: "calc(100% - 280px)",
+            width: window.innerWidth >= 768 ? "calc(100% - 280px)" : "100%",
             overflowY: "auto",
             position: "relative",
             backgroundColor: "#f8fafc",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           {/* Mobile Menu Button */}
@@ -3036,21 +3038,22 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             </button>
           </div>
 
-          {/* Content Wrapper - CENTERED CORRECTLY */}
+          {/* Content Wrapper - CENTERED VERTICALLY & HORIZONTALLY */}
           <div
             style={{
               width: "100%",
               maxWidth: "1200px",
               marginLeft: "auto",
               marginRight: "auto",
-              paddingTop: window.innerWidth < 768 ? "70px" : "40px",
+              paddingTop: window.innerWidth < 768 ? "80px" : "40px",
               paddingBottom: "40px",
-              paddingLeft: window.innerWidth < 768 ? "16px" : "32px",
-              paddingRight: window.innerWidth < 768 ? "16px" : "32px",
-              minHeight: "100vh",
+              paddingLeft: window.innerWidth < 768 ? "20px" : "40px",
+              paddingRight: window.innerWidth < 768 ? "20px" : "40px",
+              minHeight: "calc(100vh - 80px)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              alignItems: "center",
             }}
           >
             {!selectedTech ? (

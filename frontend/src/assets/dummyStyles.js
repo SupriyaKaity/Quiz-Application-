@@ -357,7 +357,7 @@ export const sidebarStyles = {
   // Welcome screen
 
   welcomeContainer:
-    "flex min-h-[calc(100dvh-140px)] items-start justify-center overflow-hidden p-3 pb-6 pt-3 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
+    "flex min-h-0 items-start justify-center overflow-hidden p-3 pb-4 pt-0 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
   //welcomeContainer: "flex items-center justify-center p-4 pb-32",
 
   welcomeContent:
@@ -404,11 +404,11 @@ export const sidebarStyles = {
   // Results screen
 
   resultsContainer:
-    "h-auto min-h-[calc(100vh-200px)] flex items-center justify-center p-4",
+    "flex h-auto min-h-0 items-start justify-center p-3 pb-4 pt-0 md:min-h-[calc(100vh-200px)] md:items-center md:p-4",
   //resultsContainer: "flex items-center justify-center p-4 pb-32",
 
   resultsContent:
-    "bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-100 max-w-2xl w-full ",
+    "w-full max-w-2xl rounded-2xl border border-gray-100 bg-white p-4 shadow-lg md:p-6 ",
 
   resultsHeader: "text-center",
   performanceIcon: "p-3 rounded-2xl inline-flex mb-3 shadow-sm",

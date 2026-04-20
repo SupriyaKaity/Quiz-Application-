@@ -2895,6 +2895,7 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               overflowY: "auto",
               minHeight: 0,
               padding: "16px",
+              height: "calc(100% - 180px)",
             }}
           >
             <div className={sidebarStyles.technologiesHeader}>
@@ -2992,6 +2993,10 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               padding: "16px",
               borderTop: "1px solid #e5e7eb",
               textAlign: "center",
+              backgroundColor: "white",
+              position: "relative",
+              bottom: 0,
+              width: "100%",
             }}
           >
             <div className={sidebarStyles.footerContent}>
@@ -3027,16 +3032,13 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             </button>
           </div>
 
-          {/* Content Wrapper - CONTENT AT TOP (like 2nd image) */}
+          {/* Content - Starts from TOP like 2nd image */}
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-start", // Changed from 'center' to 'flex-start'
-              alignItems: "center",
-              minHeight: "100vh",
               width: "100%",
-              padding: window.innerWidth < 768 ? "20px 20px 40px" : "40px",
+              maxWidth: "1200px",
+              margin: "0 auto",
+              padding: window.innerWidth < 768 ? "80px 20px 40px" : "40px",
             }}
           >
             {!selectedTech ? (

@@ -3006,7 +3006,6 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
         </aside>
 
         {/* Main Content */}
-        {/* Main Content */}
         <main
           style={{
             flex: 1,
@@ -3023,24 +3022,21 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
             <button
               onClick={toggleSidebar}
               className="p-2 bg-white rounded-lg shadow-lg hover:bg-gray-50 transition"
-              style={{
-                boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-              }}
             >
               <Menu size={24} />
             </button>
           </div>
 
-          {/* Content Wrapper - FIXED CENTERING */}
+          {/* CONTENT WRAPPER - THIS IS THE KEY FIX */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              minHeight: "calc(100vh - 80px)",
+              minHeight: "100vh",
               width: "100%",
-              padding: window.innerWidth < 768 ? "80px 20px 40px" : "40px",
+              padding: window.innerWidth < 768 ? "60px 20px 40px" : "40px",
             }}
           >
             <div
@@ -3051,90 +3047,78 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               }}
             >
               {!selectedTech ? (
-                <div className={sidebarStyles.welcomeContainer}>
-                  <div className={sidebarStyles.welcomeContent}>
-                    <div className={sidebarStyles.welcomeIcon}>
-                      <Award size={64} className="text-indigo-700" />
-                    </div>
-                    <h2 className={sidebarStyles.welcomeTitle}>
-                      Welcome to Tech Quiz Master
-                    </h2>
-                    <p className={sidebarStyles.welcomeDescription}>
-                      Click the menu button ☰ and select a technology to start
-                      your quiz journey!
-                    </p>
+                <div style={{ textAlign: "center" }}>
+                  <div className={sidebarStyles.welcomeIcon}>
+                    <Award size={64} className="text-indigo-700" />
+                  </div>
+                  <h2 className={sidebarStyles.welcomeTitle}>
+                    Welcome to Tech Quiz Master
+                  </h2>
+                  <p className={sidebarStyles.welcomeDescription}>
+                    Click the menu button ☰ and select a technology to start
+                    your quiz journey!
+                  </p>
 
-                    <div className={sidebarStyles.featuresGrid}>
-                      <div className={sidebarStyles.featureCard}>
-                        <div className={sidebarStyles.featureIcon}>
-                          <Star size={20} />
-                        </div>
-                        <h3 className={sidebarStyles.featureTitle}>
-                          Multiple Technologies
-                        </h3>
-                        <p className={sidebarStyles.featureDescription}>
-                          HTML, CSS, JavaScript, React, and more
-                        </p>
+                  <div className={sidebarStyles.featuresGrid}>
+                    <div className={sidebarStyles.featureCard}>
+                      <div className={sidebarStyles.featureIcon}>
+                        <Star size={20} />
                       </div>
-
-                      <div className={sidebarStyles.featureCard}>
-                        <div className={sidebarStyles.featureIcon}>
-                          <Zap size={20} />
-                        </div>
-                        <h3 className={sidebarStyles.featureTitle}>
-                          Three Difficulty Levels
-                        </h3>
-                        <p className={sidebarStyles.featureDescription}>
-                          Basic, Intermediate, and Advanced challenges
-                        </p>
-                      </div>
-
-                      <div className={sidebarStyles.featureCard}>
-                        <div className={sidebarStyles.featureIcon}>
-                          <Target size={20} />
-                        </div>
-                        <h3 className={sidebarStyles.featureTitle}>
-                          Instant Feedback
-                        </h3>
-                        <p className={sidebarStyles.featureDescription}>
-                          Get detailed results and performance analysis
-                        </p>
-                      </div>
+                      <h3 className={sidebarStyles.featureTitle}>
+                        Multiple Technologies
+                      </h3>
+                      <p className={sidebarStyles.featureDescription}>
+                        HTML, CSS, JavaScript, React, and more
+                      </p>
                     </div>
 
-                    <div className={sidebarStyles.welcomePrompt}>
-                      <p className={sidebarStyles.welcomePromptText}>
-                        <Sparkles size={16} className="mr-2" />
-                        Select any technology to begin your learning adventure!
+                    <div className={sidebarStyles.featureCard}>
+                      <div className={sidebarStyles.featureIcon}>
+                        <Zap size={20} />
+                      </div>
+                      <h3 className={sidebarStyles.featureTitle}>
+                        Three Difficulty Levels
+                      </h3>
+                      <p className={sidebarStyles.featureDescription}>
+                        Basic, Intermediate, and Advanced challenges
+                      </p>
+                    </div>
+
+                    <div className={sidebarStyles.featureCard}>
+                      <div className={sidebarStyles.featureIcon}>
+                        <Target size={20} />
+                      </div>
+                      <h3 className={sidebarStyles.featureTitle}>
+                        Instant Feedback
+                      </h3>
+                      <p className={sidebarStyles.featureDescription}>
+                        Get detailed results and performance analysis
                       </p>
                     </div>
                   </div>
-                </div>
-              ) : !selectedLevel ? (
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    minHeight: "50vh",
-                  }}
-                >
-                  <div className={sidebarStyles.levelSelectionContent}>
-                    <div
-                      className={`${sidebarStyles.techSelectionIcon} ${
-                        technologies.find((t) => t.id === selectedTech).color
-                      }`}
-                    >
-                      {technologies.find((t) => t.id === selectedTech).icon}
-                    </div>
-                    <h2 className={sidebarStyles.techSelectionTitle}>
-                      {technologies.find((t) => t.id === selectedTech).name}{" "}
-                      Quiz
-                    </h2>
-                    <p className={sidebarStyles.techSelectionDescription}>
-                      Select a difficulty level to begin your challenge
+
+                  <div className={sidebarStyles.welcomePrompt}>
+                    <p className={sidebarStyles.welcomePromptText}>
+                      <Sparkles size={16} className="mr-2" />
+                      Select any technology to begin your learning adventure!
                     </p>
                   </div>
+                </div>
+              ) : !selectedLevel ? (
+                <div style={{ textAlign: "center" }}>
+                  <div
+                    className={`${sidebarStyles.techSelectionIcon} ${
+                      technologies.find((t) => t.id === selectedTech).color
+                    }`}
+                  >
+                    {technologies.find((t) => t.id === selectedTech).icon}
+                  </div>
+                  <h2 className={sidebarStyles.techSelectionTitle}>
+                    {technologies.find((t) => t.id === selectedTech).name} Quiz
+                  </h2>
+                  <p className={sidebarStyles.techSelectionDescription}>
+                    Select a difficulty level to begin your challenge
+                  </p>
                 </div>
               ) : showResults ? (
                 <div className={sidebarStyles.resultsContainer}>
@@ -3393,6 +3377,45 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
       </div>
 
       <style>{sidebarStyles.customStyles}</style>
+      <style>{`
+  /* Force full height and centering */
+  .sidebar-page-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .main-content-fix {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  /* Center the welcome content vertically */
+  .welcome-container-fix {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  /* For the main content wrapper */
+  .content-wrapper-fix {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 60px);
+    width: 100%;
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .content-wrapper-fix {
+      min-height: calc(100vh - 80px);
+      justify-content: center;
+    }
+  }
+`}</style>
     </div>
   );
 };

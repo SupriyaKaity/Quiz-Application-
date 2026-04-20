@@ -357,11 +357,11 @@ export const sidebarStyles = {
   // Welcome screen
 
   welcomeContainer:
-    "flex min-h-[calc(100vh-200px)] items-center justify-center p-3 md:p-4",
+    "flex min-h-[calc(100vh-200px)] items-start justify-center p-3 pb-24 pt-4 md:items-center md:p-4",
   //welcomeContainer: "flex items-center justify-center p-4 pb-32",
 
   welcomeContent:
-    "text-center max-w-2xl mx-auto bg-white/90 backdrop-blur-sm p-4 md:p-6 rounded-2xl shadow-lg border border-white",
+    "mx-auto w-full max-w-2xl rounded-2xl border border-white bg-white/90 p-4 text-center shadow-lg backdrop-blur-sm md:p-6",
 
   welcomeIcon:
     "inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-200 to-indigo-200 rounded-full shadow mb-4",

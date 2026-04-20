@@ -1143,56 +1143,107 @@ const Sidebar = ({ onExamStart, onExamEnd }) => {
               </div>
             ) : currentQ ? (
               <div className={sidebarStyles.quizContainer}>
-                {/* Timer on Left, Exit Button on Right - Same Row */}
-                <div className="fixed top-20 right-3 z-50 flex flex-col items-end gap-2 md:top-4 md:right-4 md:flex-row md:items-center md:gap-3">
-                  {/* Circle Timer (Left side) */}
-                  <div className="relative h-14 w-14 md:h-16 md:w-16">
-                    <svg className="w-full h-full -rotate-90">
-                      <circle
-                        cx="32"
-                        cy="32"
-                        r="28"
-                        stroke="#e5e7eb"
-                        strokeWidth="5"
-                        fill="none"
-                      />
-                      <circle
-                        cx="32"
-                        cy="32"
-                        r="28"
-                        stroke={
-                          timeLeft <= 5
-                            ? "#ef4444"
-                            : timeLeft <= 10
-                              ? "#f97316"
-                              : "#22c55e"
-                        }
-                        strokeWidth="5"
-                        fill="none"
-                        strokeDasharray={`${(timeLeft / 15) * 175.9} 175.9`}
-                        strokeLinecap="round"
-                        className="transition-all duration-1000"
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span
-                        className={`text-lg font-bold ${timeLeft <= 5 ? "text-red-500" : timeLeft <= 10 ? "text-orange-500" : "text-green-500"}`}
-                      >
-                        {timeLeft}
-                      </span>
-                      <span className="text-[8px] text-gray-400">sec</span>
+                {isMobile ? (
+                  <>
+                    <div className="fixed top-20 left-1/2 z-50 -translate-x-1/2">
+                      <div className="relative h-14 w-14">
+                        <svg className="h-full w-full -rotate-90">
+                          <circle
+                            cx="32"
+                            cy="32"
+                            r="28"
+                            stroke="#e5e7eb"
+                            strokeWidth="5"
+                            fill="none"
+                          />
+                          <circle
+                            cx="32"
+                            cy="32"
+                            r="28"
+                            stroke={
+                              timeLeft <= 5
+                                ? "#ef4444"
+                                : timeLeft <= 10
+                                  ? "#f97316"
+                                  : "#22c55e"
+                            }
+                            strokeWidth="5"
+                            fill="none"
+                            strokeDasharray={`${(timeLeft / 15) * 175.9} 175.9`}
+                            strokeLinecap="round"
+                            className="transition-all duration-1000"
+                          />
+                        </svg>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center">
+                          <span
+                            className={`text-lg font-bold ${timeLeft <= 5 ? "text-red-500" : timeLeft <= 10 ? "text-orange-500" : "text-green-500"}`}
+                          >
+                            {timeLeft}
+                          </span>
+                          <span className="text-[8px] text-gray-400">sec</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Exit Button - Creamy Butter Color with Lucide Icon (Right side) */}
-                  <button
-                    onClick={exitExam}
-                    className="flex items-center gap-2 rounded-xl border border-amber-200 bg-linear-to-r from-amber-300 to-yellow-300 px-3 py-2 text-sm font-medium text-amber-900 shadow-md transition hover:from-amber-400 hover:to-yellow-400 md:px-4 md:py-2.5"
-                  >
-                    <LogOut size={18} />
-                    {isMobile ? "Exit" : "Exit Quiz"}
-                  </button>
-                </div>
+                    <div className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2">
+                      <button
+                        onClick={exitExam}
+                        className="flex items-center gap-2 rounded-xl border border-amber-200 bg-linear-to-r from-amber-300 to-yellow-300 px-5 py-2.5 text-sm font-medium text-amber-900 shadow-md transition hover:from-amber-400 hover:to-yellow-400"
+                      >
+                        <LogOut size={18} />
+                        Exit
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
+                    <div className="relative h-16 w-16">
+                      <svg className="w-full h-full -rotate-90">
+                        <circle
+                          cx="32"
+                          cy="32"
+                          r="28"
+                          stroke="#e5e7eb"
+                          strokeWidth="5"
+                          fill="none"
+                        />
+                        <circle
+                          cx="32"
+                          cy="32"
+                          r="28"
+                          stroke={
+                            timeLeft <= 5
+                              ? "#ef4444"
+                              : timeLeft <= 10
+                                ? "#f97316"
+                                : "#22c55e"
+                          }
+                          strokeWidth="5"
+                          fill="none"
+                          strokeDasharray={`${(timeLeft / 15) * 175.9} 175.9`}
+                          strokeLinecap="round"
+                          className="transition-all duration-1000"
+                        />
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <span
+                          className={`text-lg font-bold ${timeLeft <= 5 ? "text-red-500" : timeLeft <= 10 ? "text-orange-500" : "text-green-500"}`}
+                        >
+                          {timeLeft}
+                        </span>
+                        <span className="text-[8px] text-gray-400">sec</span>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={exitExam}
+                      className="flex items-center gap-2 rounded-xl border border-amber-200 bg-linear-to-r from-amber-300 to-yellow-300 px-4 py-2.5 text-sm font-medium text-amber-900 shadow-md transition hover:from-amber-400 hover:to-yellow-400"
+                    >
+                      <LogOut size={18} />
+                      Exit Quiz
+                    </button>
+                  </div>
+                )}
 
                 {/* Rest of your quiz content */}
                 <div className={sidebarStyles.quizHeader}>
